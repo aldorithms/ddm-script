@@ -1,5 +1,5 @@
-Set-Location -Path D:\
 New-Item -Path "D:\" -Name "packages" -ItemType Directory
+New-Item -Path "D:\" -Name "$Env:UserName" -ItemType Directory
 
 ${cache-array} = "npm", "vcpkg", "pip", "cargo", "maven"
 foreach ($cache in ${cache-array}) {
@@ -23,7 +23,8 @@ foreach ($origin in ${origin-destination}.Keys) {
     Copy-Item -Path $origin -Destination ${origin-destination}[$origin] -Recurse
 }
 
-# cd ../$Env:UserName
-# mkdir .nuget\
+New-Item -Path "D:\$Env:UserName"           -Name ".nuget"      -ItemType Directory
+New-Item -Path "D:\$Env:UserName\.nuget"    -Name "packages"    -ItemType Directory
 
-# New-Item -Path "D:\" -Name "$Env:UserName" -ItemType Directory
+setx    /M  NUGET_PACKAGES              D:\$Env:UserName\.nuget\packages
+```
