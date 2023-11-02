@@ -3,7 +3,9 @@ New-Item -Path "D:\" -Name "$Env:UserName" -ItemType Directory
 
 ${cache-array} = "npm", "vcpkg", "pip", "cargo", "maven"
 foreach ($cache in ${cache-array}) {
-    New-Item -Path "D:\packages" -Name "$cache" -ItemType Directory
+    if (!(Test-Path "D:\packages\$cache")) {
+        New-Item -Path "D:\packages\" -Name "$cache" -ItemType Directory
+    }
 }
 
 setx    /M  NPM_CONFIG_CACHE            D:\packages\npm
