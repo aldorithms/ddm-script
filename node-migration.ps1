@@ -12,7 +12,7 @@ if ($npm_config_path -ne "D:\packages\npm") {
     [Environment]::SetEnvironmentVariable("npm_config_path", "D:\packages\npm", "User")
 }
 
-#if %AppData%\npm-cache exists, copy it's contents to %npm_config_path%
+# If %AppData%\npm-cache exists, copy it's contents to %npm_config_path%
 if (Test-Path "$env:AppData\npm-cache") {
     Copy-Item -Path "$env:AppData\npm-cache\*" -Destination "$env:npm_config_path" -Recurse
 }
